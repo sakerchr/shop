@@ -1,0 +1,44 @@
+version: "3"
+services:
+
+  nginx:
+    container_name: nginx
+    image: nginx:1.15-alpine
+    depends_on:
+      - django
+    ports:
+      - "80:80"
+      - "443:443"
+    networks:
+      - frontend
+
+  django:
+    container_name: django
+    build:
+      context: ./src/django
+    command: python manage.py runserver 0.0.0.0:8000
+    depends_on:
+      - postgres
+    volumes:
+      - ./src/django/shop:/code
+    ports:
+      - "8000:8000"
+    networks:
+      - frontend
+      - backend
+
+  postgres:
+    container_name: postgres
+    image: postgres:11.1-alpine
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    networks:
+      - backend
+
+networks:
+  frontend:
+  backend:
+
+volumes:
+  db-data:
+#  django:
