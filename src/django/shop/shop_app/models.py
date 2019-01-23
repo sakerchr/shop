@@ -27,4 +27,6 @@ class Order(models.Model):
 
 class Review(models.Model):
     rating = models.PositiveSmallIntegerField()
-    test = models.CharField(max_length=200)
+    text = models.CharField(max_length=200)
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+    item = models.ForeignKey(Item, on_delete=models.CASCADE, null=True)
