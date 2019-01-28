@@ -1,12 +1,16 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
-
+from django.template import loader
 from .models import *
 
 # Create your views here.
 
 def index(request):
-    return HttpResponse("Hello world. You are at the shop index.")
+    items = Item.objects.all()
+    context = {
+        'items': items,
+    }
+    return render(request, 'shop_app/index.html', context)
 
 def login(request):
     return HttpResponse("Login page.")
@@ -27,8 +31,8 @@ def items_from_category(request, category):
     return HttpResponse("Items from category: %s" % items)
 
 def item(request, item):
-    item = Item.objects.get(pk=item)
-    return HttpResponse("item. %s" % item.name)
+    item = get_object_or_404(Item, pk=item)
+    return render(request, "shop_app/detail.html", {"item": item})
 
 def user_orders(request):
 
