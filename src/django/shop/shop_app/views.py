@@ -18,7 +18,6 @@ class ItemCategoryViewSet(viewsets.ModelViewSet):
     """
     queryset = ItemCategory.objects.all()
     serializer_class = ItemCategorySerializer
-    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
 
 class ItemViewSet(viewsets.ModelViewSet):
@@ -27,7 +26,6 @@ class ItemViewSet(viewsets.ModelViewSet):
     """
     queryset = Item.objects.all()
     serializer_class = ItemSerializer
-    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
     
 
@@ -37,7 +35,6 @@ class UserViewSet(viewsets.ModelViewSet):
     """
     queryset = User.objects.all().order_by('-date_joined')
     serializer_class = UserSerializer
-    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
 class OrderViewSet(viewsets.ModelViewSet):
     """
@@ -45,7 +42,6 @@ class OrderViewSet(viewsets.ModelViewSet):
     """
     queryset = Order.objects.all()
     serializer_class = OrderSerializer
-    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
 class ReviewViewSet(viewsets.ModelViewSet):
     """
@@ -53,5 +49,4 @@ class ReviewViewSet(viewsets.ModelViewSet):
     """
     queryset = Review.objects.all()
     serializer_class = ReviewSerializer
-    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
