@@ -1,49 +1,57 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 from django.template import loader
-from .models import *
+from django.contrib.auth.models import User
+from .models import Item, ItemCategory, Order, Review
+from .serializers import ItemSerializer, ItemCategorySerializer, OrderSerializer, ReviewSerializer, UserSerializer
 
-# Create your views here.
+from rest_framework import viewsets
+from rest_framework.response import Response
+from rest_framework import permissions
+from rest_framework.decorators import api_view
+from rest_framework.reverse import reverse
 
-def index(request):
-    items = Item.objects.all()
-    context = {
-        'items': items,
-    }
-    return render(request, 'shop_app/index.html', context)
 
-def login(request):
-    return HttpResponse("Login page.")
+class ItemCategoryViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows users to be viewed or edited.
+    """
+    queryset = ItemCategory.objects.all()
+    serializer_class = ItemCategorySerializer
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
-def items(request):
-    items = Item.objects.all()
-    items_output = ', '.join([item.name for item in items])
-    return HttpResponse("Items: %s" % items_output)
 
-def categories(request):
-    categories = ItemCategory.objects.all()
-    categories = ', '.join([category.name for category in categories])
-    return HttpResponse("Categories: %s" % categories)
+class ItemViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows users to be viewed or edited.
+    """
+    queryset = Item.objects.all()
+    serializer_class = ItemSerializer
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
-def items_from_category(request, category):
-    items = ItemCategory.objects.get(pk=category).item_set.all()
-    items = ', '.join([item.name for item in items]) 
-    return HttpResponse("Items from category: %s" % items)
+    
 
-def item(request, item):
-    item = get_object_or_404(Item, pk=item)
-    return render(request, "shop_app/detail.html", {"item": item})
+class UserViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows users to be viewed or edited.
+    """
+    queryset = User.objects.all().order_by('-date_joined')
+    serializer_class = UserSerializer
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
-def user_orders(request):
+class OrderViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows users to be viewed or edited.
+    """
+    queryset = Order.objects.all()
+    serializer_class = OrderSerializer
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
-    return HttpResponse("user orders.")
+class ReviewViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows users to be viewed or edited.
+    """
+    queryset = Review.objects.all()
+    serializer_class = ReviewSerializer
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
-def reviews_for_item(request, item):
-    reviews = Review.objects.filter(item=item)
-    reviews = ', '.join([review.text for review in reviews])
-
-    return HttpResponse("reviews for item %s" % reviews)
-
-def reviews_by_user(request):
-
-    return HttpResponse("reviews by user")
