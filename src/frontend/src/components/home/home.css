@@ -1,0 +1,12 @@
+.center {
+    margin: auto;
+    width: 50%;
+}
+
+.centerText {
+    text-align: center;
+}
+
+.home {
+    background-color: grey;
+}
