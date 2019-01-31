@@ -3,6 +3,7 @@ import './home.css';
 import { getItems, getCategories } from '../../api';
 import ItemsList from '../itemsList/itemsList';
 import CategoryFilter from '../categoryFilter/categoryFilter';
+import {Link} from 'react-router-dom';
 
 class Home extends Component{
 
@@ -39,8 +40,7 @@ class Home extends Component{
 
     render(){
         return(
-            <div className="center home centerText">
-                <h1>The Item Shop</h1>
+            <div>
                 <CategoryFilter categories={this.state.categories} onCategoryFilterChange={this.onCategoryFilterChange}/>
                 <ItemsList items={this.state.filteredItems} />
             </div>

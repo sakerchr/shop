@@ -42,3 +42,7 @@ export const getItems = () => {
 export const getCategories = () => {
     return getRequest(CATEGORY_LIST_URL);
 }
+
+export const getItem = (id) => {
+    return getRequest(`${ITEM_LIST_URL}${id}`)
+}

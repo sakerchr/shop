@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './itemsList.css';
+import { Link } from 'react-router-dom';
 
 
 class ItemsList extends Component{
@@ -17,7 +18,11 @@ class ItemsList extends Component{
                         {this.props.items.map((item) => {
                             return (
                             <tr>
-                                <td>{`${item.name} --- ${item.description}`}</td>
+                                <td>
+                                    <Link to={`/item/${item.id}`}>
+                                        {`${item.name} --- ${item.description}`}
+                                    </Link>
+                                </td>
                             </tr>
                             );
                         })}
