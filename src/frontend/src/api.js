@@ -1,6 +1,7 @@
 import axios from 'axios';
 import {
     ITEM_LIST_URL,
+    CATEGORY_LIST_URL
 } from "./urls";
 
 export const getRequest = (url, params = {} ) => {
@@ -37,3 +38,7 @@ export const postRequest = (url, data, params = {} ) => {
 export const getItems = () => {
     return getRequest(ITEM_LIST_URL);
 };
+
+export const getCategories = () => {
+    return getRequest(CATEGORY_LIST_URL);
+}
