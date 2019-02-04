@@ -1,17 +1,16 @@
 import axios from 'axios';
 import {
     ITEM_LIST_URL,
-    CATEGORY_LIST_URL
+    CATEGORY_LIST_URL,
+    LOGIN_URL
 } from "./urls";
 
+axios.defaults.xsrfCookieName = 'csrftoken'
+axios.defaults.xsrfHeaderName = 'X-CSRFToken'
+
 export const getRequest = (url, params = {} ) => {
-    const method = "GET";
     return new Promise((resolve, reject) => {
-        axios({
-            method: method,
-            url: url,
-            params: params
-        }).then((response) => {
+        axios.get(url).then((response) => {
             resolve(response);
         }).catch((error) => {
             reject(error);
@@ -20,14 +19,8 @@ export const getRequest = (url, params = {} ) => {
 };
 
 export const postRequest = (url, data, params = {} ) => {
-    const method = "POST";
     return new Promise((resolve, reject) => {
-        axios({
-            method: method,
-            data: data,
-            url: url,
-            params: params
-        }).then((response) => {
+        axios.post(url, data).then((response) => {
             resolve(response);
         }).catch((error) => {
             reject(error);
@@ -44,5 +37,11 @@ export const getCategories = () => {
 }
 
 export const getItem = (id) => {
-    return getRequest(`${ITEM_LIST_URL}${id}`)
+    return getRequest(`${ITEM_LIST_URL}${id}`);
 }
+
+export const postLogin = (username, password) => {
+    var data = {"username": username, "password": password};
+    return postRequest(LOGIN_URL, data);
+}
+

@@ -13,7 +13,8 @@ router.register(r'orders', views.OrderViewSet)
 router.register(r'reviews', views.ReviewViewSet)
 
 urlpatterns = [
-    path('', include(router.urls))
+    path('', include(router.urls)),
+    path("login/", views.login_request),
 ]
 
 '''
