@@ -25,7 +25,7 @@ class App extends Component {
 
   render() {
     return (
-        <div className="center centerText background">
+        <div className="center centerText App">
           <Link to="/"><h1>The Item Shop</h1></Link>
           <MenuBar loggedIn={this.state.loggedIn} logout={() => this.loginCallback(false)}/>
           <Switch>

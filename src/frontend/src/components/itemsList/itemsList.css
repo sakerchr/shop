@@ -1,3 +1,5 @@
 .itemsList tr {
     background-color: aquamarine;
+    margin: 2vh 0;
+    padding: 2vh;
 }

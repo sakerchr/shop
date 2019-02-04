@@ -24,11 +24,13 @@ class Login extends Component {
                 <form id="login-form" onSubmit={this.login}>
                     <div>
                         <label for="username-input">Username:</label>
+                        <br />
                         <input type="text" id="username-input" name="username-input"
                             required="true" autofocus="true" size="20"/>
                     </div>
                     <div>
                         <label for="password-input">Password:</label>
+                        <br />
                         <input type="password" id="password-input" name="password-input"
                             required="true" size="20"/>
                     </div>

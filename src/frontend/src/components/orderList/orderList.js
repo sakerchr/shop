@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
 
-class ReviewList extends Component {
+class OrderList extends Component {
 
     render(){
         return(
-            <div className="reviewList center">
+            <div className="orderList center">
                 <table>
                     <thead>
                         <tr>
@@ -14,12 +14,12 @@ class ReviewList extends Component {
                         </tr>
                     </thead>
                     <tbody>
-                        {this.props.reviews.map((review) => {
+                        {this.props.orders.map((order) => {
                             return (
                             <tr>
                                 <td>
-                                    <Link to={`/review/${review.id}`}>
-                                        {`Rating:${review.rating}/5 \n ${review.text} \n`}
+                                    <Link to={`/order/${order.id}`}>
+                                        {`${order.date}`}
                                     </Link>
                                 </td>
                             </tr>
@@ -33,4 +33,4 @@ class ReviewList extends Component {
 
 }
 
-export default ReviewList;
+export default OrderList;

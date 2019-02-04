@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ReviewList from "../reviewList/reviewList";
-import { getItem } from '../../api';
+import { getItem, getItemReviews } from '../../api';
 
 
 class ItemDetail extends Component {
@@ -15,8 +15,11 @@ class ItemDetail extends Component {
 
     componentWillMount(){
         getItem(this.props.match.params.id).then(response => {
-            this.setState({item: response.data})
-        });     
+            this.setState({item: response.data});
+        });
+        getItemReviews(this.props.match.params.id).then(response => {
+            this.setState({reviews: response.data.results});
+        })     
     }
 
     render(){
@@ -25,7 +28,7 @@ class ItemDetail extends Component {
                 <h1>{this.state.item.name}</h1>
                 <h2>{`price: ${this.state.item.price} --- ${this.state.item.number_in_stock} in stock`}</h2>
                 <p>{this.state.item.description}</p>
-                <ReviewList id={this.props.match.id} />
+                <ReviewList title={"Item reviews:"} id={this.props.match.id} reviews={this.state.reviews}/>
             </div>
         );
     }

@@ -55,13 +55,33 @@ class OrderViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows users to be viewed or edited.
     """
-    queryset = Order.objects.all()
     serializer_class = OrderSerializer
+    
+    def get_queryset(self):
+        queryset = Order.objects.all()
+        
+        user_id = self.request.query_params.get("from_user", None)
+        if user_id is not None:
+            queryset = queryset.filter(user=self.request.user)
+            
+        return queryset
+
 
 class ReviewViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows users to be viewed or edited.
     """
-    queryset = Review.objects.all()
     serializer_class = ReviewSerializer
+
+    def get_queryset(self):
+        queryset = Review.objects.all()
+        item_id =self.request.query_params.get("item_id", None)
+        if item_id is not None:
+            queryset = queryset.filter(item=item_id)
+        
+        user_id = self.request.query_params.get("from_user", None)
+        if user_id is not None:
+            queryset = queryset.filter(user=self.request.user)
+        return queryset
+        
 
