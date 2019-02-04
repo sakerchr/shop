@@ -26,7 +26,7 @@ class App extends Component {
     return (
         <div className="center centerText background">
           <h1>The Item Shop</h1>
-          <MenuBar />
+          <MenuBar loggedIn={this.state.loggedIn} logout={() => this.loginCallback(false)}/>
           <Switch>
             <Route exact path="/" render={() => (
               this.state.loggedIn ? <Home /> : <Login loginCallback={this.loginCallback} />
