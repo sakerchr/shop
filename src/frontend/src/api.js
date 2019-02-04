@@ -61,3 +61,16 @@ export const getUserOrders = () => {
     var params = {"from_user": true};
     return getRequest(ORDERS_URL, params);
 }
+
+export const getOrder = (id) => {
+    return getRequest(`${ORDERS_URL}${id}`)
+}
+
+export const getOrderItems = (id) => {
+    var params = {"order_id": id};
+    return getRequest(ITEM_LIST_URL, params);
+}
+
+export const getReview = (id) => {
+    return getRequest(`${REVIEWS_URL}${id}`)
+}

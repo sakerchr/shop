@@ -7,7 +7,7 @@ app_name="shop_app"
 
 router = DefaultRouter()
 router.register(r'categories', views.ItemCategoryViewSet)
-router.register(r'items', views.ItemViewSet)
+router.register(r'items', views.ItemViewSet, base_name="items")
 router.register(r'users', views.UserViewSet)
 router.register(r'orders', views.OrderViewSet, base_name="orders")
 router.register(r'reviews', views.ReviewViewSet, base_name="reviews")

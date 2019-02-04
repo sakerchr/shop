@@ -7,6 +7,8 @@ import ItemDetail from './components/itemDetail/itemDetail';
 import MenuBar from './components/menuBar/menuBar';
 import Login from './components/login/login';
 import User from './components/user/user';
+import ReviewDetail from './components/reviewDetail/reviewDetail';
+import OrderDetail from './components/orderDetail/orderDetail';
 
 class App extends Component {
 
@@ -34,6 +36,8 @@ class App extends Component {
             )}/>
             <PrivateRoute path="/user" component={User} isLoggedIn={this.state.loggedIn}/>
             <Route path="/item/:id" component={ItemDetail}/>
+            <Route path="/review/:id" component={ReviewDetail}/>
+            <Route path="/order/:id" component={OrderDetail}/>
           </Switch>
         </div>
     );
