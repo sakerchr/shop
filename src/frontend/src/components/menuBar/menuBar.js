@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import "./menuBar.css"
 
 class MenuBar extends Component {
@@ -8,10 +8,10 @@ class MenuBar extends Component {
         return this.props.loggedIn ? 
         (<div className="menuBar" hidden={this.props.loggedIn}>
             <Link to="/">Home</Link>
-            <Link to="/">User</Link>
+            <Link to="/user">User</Link>
             <button onClick={this.props.logout}>logout</button>
         </div>)
-        : <div></div> 
+        : <Redirect to="/" />
     }
 
 }

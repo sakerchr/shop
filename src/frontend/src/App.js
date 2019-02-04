@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Home from './components/home/home';
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, Redirect, Link } from "react-router-dom";
 import ItemDetail from './components/itemDetail/itemDetail';
 import MenuBar from './components/menuBar/menuBar';
 import Login from './components/login/login';
+import User from './components/user/user';
 
 class App extends Component {
 
@@ -25,17 +26,40 @@ class App extends Component {
   render() {
     return (
         <div className="center centerText background">
-          <h1>The Item Shop</h1>
+          <Link to="/"><h1>The Item Shop</h1></Link>
           <MenuBar loggedIn={this.state.loggedIn} logout={() => this.loginCallback(false)}/>
           <Switch>
             <Route exact path="/" render={() => (
               this.state.loggedIn ? <Home /> : <Login loginCallback={this.loginCallback} />
             )}/>
+            <PrivateRoute path="/user" component={User} isLoggedIn={this.state.loggedIn}/>
             <Route path="/item/:id" component={ItemDetail}/>
           </Switch>
         </div>
     );
   }
 }
+
+function PrivateRoute({ component: Component, isLoggedIn, ...rest }) {
+  return (
+    <Route
+      {...rest}
+      render={props =>
+        isLoggedIn ? (
+          <Component {...props} />
+        ) : (
+          <Redirect
+            to={{
+              pathname: "/",
+              state: { from: props.location }
+            }}
+          />
+        )
+      }
+    />
+  );
+}
+
+
 
 export default App;
