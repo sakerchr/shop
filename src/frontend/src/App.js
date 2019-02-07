@@ -9,6 +9,7 @@ import Login from './components/login/login';
 import User from './components/user/user';
 import ReviewDetail from './components/reviewDetail/reviewDetail';
 import OrderDetail from './components/orderDetail/orderDetail';
+import { getIsLoggedIn, postLogout } from './api';
 
 class App extends Component {
 
@@ -20,15 +21,22 @@ class App extends Component {
     this.loginCallback = this.loginCallback.bind(this);
   }
 
+  componentWillMount(){
+    getIsLoggedIn().then(response => {
+      this.setState({loggedIn: response.data =="true"});
+    });
+  }
+
   loginCallback = function(loggedIn){
     this.setState({loggedIn: loggedIn});
+    if (! loggedIn) postLogout();
   }
 
 
   render() {
     return (
         <div className="center centerText App">
-          <Link to="/"><h1>The Item Shop</h1></Link>
+          <h1>The Item Shop</h1>
           <MenuBar loggedIn={this.state.loggedIn} logout={() => this.loginCallback(false)}/>
           <Switch>
             <Route exact path="/" render={() => (

@@ -4,7 +4,9 @@ import {
     CATEGORY_LIST_URL,
     LOGIN_URL,
     REVIEWS_URL,
-    ORDERS_URL
+    ORDERS_URL,
+    LOGGED_IN_URL,
+    LOGOUT_URL
 } from "./urls";
 
 axios.defaults.xsrfCookieName = 'csrftoken'
@@ -47,6 +49,10 @@ export const postLogin = (username, password) => {
     return postRequest(LOGIN_URL, data);
 }
 
+export const postLogout = () => {
+    return postRequest(LOGOUT_URL);
+}
+
 export const getItemReviews = (id) => {
     var params = {"item_id": id};
     return getRequest(REVIEWS_URL, params);
@@ -73,4 +79,8 @@ export const getOrderItems = (id) => {
 
 export const getReview = (id) => {
     return getRequest(`${REVIEWS_URL}${id}`)
+}
+
+export const getIsLoggedIn = () => {
+    return getRequest(LOGGED_IN_URL);
 }

@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, JsonResponse
 from django.template import loader
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from .models import Item, ItemCategory, Order, Review
 from .serializers import ItemSerializer, ItemCategorySerializer, OrderSerializer, ReviewSerializer, UserSerializer
 
@@ -12,6 +12,7 @@ from rest_framework import permissions
 from rest_framework.decorators import api_view, permission_classes, schema
 from rest_framework.reverse import reverse
 from rest_framework.exceptions import AuthenticationFailed
+import json
 
 
 @api_view(['POST'])
@@ -26,6 +27,18 @@ def login_request(request):
     else:
         raise AuthenticationFailed()
 
+@api_view(['POST'])
+@permission_classes((permissions.AllowAny,))
+def logout_request(request):
+    logout(request)
+    return Response(status=status.HTTP_200_OK)
+
+@api_view(['GET'])
+@permission_classes((permissions.AllowAny,))
+def logged_in(request):
+    is_authenticated = request.user.is_authenticated if request.user is not None else False
+    return JsonResponse(json.dumps(is_authenticated), safe=False)
+    
 
 class ItemCategoryViewSet(viewsets.ModelViewSet):
     """
