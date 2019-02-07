@@ -1,0 +1,9 @@
+.orderList a{
+    color: white;
+    text-decoration: underline;
+}
+
+.orderList table{
+    margin-top: 1vh;
+    color: white;
+}

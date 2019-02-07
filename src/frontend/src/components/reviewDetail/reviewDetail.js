@@ -22,7 +22,7 @@ class ReviewDetail extends Component {
     render(){
         return(
             <div>
-                <h1>{this.state.review.rating}</h1>
+                <h1>{`${this.state.review.rating} / 5`}</h1>
                 <p>{this.state.review.text}</p>
                 <Link to={`/item/${this.state.review.item}`}>To Item</ Link>
             </div>

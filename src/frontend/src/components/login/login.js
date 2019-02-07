@@ -26,13 +26,13 @@ class Login extends Component {
                         <label for="username-input">Username:</label>
                         <br />
                         <input type="text" id="username-input" name="username-input"
-                            required="true" autofocus="true" size="20"/>
+                            required="true" autofocus="true"/>
                     </div>
                     <div>
                         <label for="password-input">Password:</label>
                         <br />
                         <input type="password" id="password-input" name="password-input"
-                            required="true" size="20"/>
+                            required="true"/>
                     </div>
                     <input type="submit" form="login-form" value="Login" />
                 </form>

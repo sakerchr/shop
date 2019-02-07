@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import Table from 'react-bootstrap/Table';
+import "./orderList.css";
 
 
 class OrderList extends Component {
@@ -7,10 +9,10 @@ class OrderList extends Component {
     render(){
         return(
             <div className="orderList center">
-                <table>
+                <Table striped bordered hover responsive>
                     <thead>
                         <tr>
-                            <th>{this.props.title}</th>
+                            <th>Your orders:</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -26,7 +28,7 @@ class OrderList extends Component {
                             );
                         })}
                     </tbody>
-                </table>
+                </Table>
             </div>
         );
     }

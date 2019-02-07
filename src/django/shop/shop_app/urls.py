@@ -15,6 +15,8 @@ router.register(r'reviews', views.ReviewViewSet, base_name="reviews")
 urlpatterns = [
     path('', include(router.urls)),
     path("login/", views.login_request),
+    path("logout/", views.logout_request),
+    path("logged_in/", views.logged_in),
 ]
 
 '''

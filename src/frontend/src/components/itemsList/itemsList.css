@@ -1,5 +1,9 @@
-.itemsList tr {
-    background-color: aquamarine;
-    margin: 2vh 0;
-    padding: 2vh;
+.itemsList table{
+    background-color: #007bff;
+    color: white;
+}
+
+.itemsList a{
+    color: white;
+    text-decoration: underline;
 }
