@@ -26,8 +26,9 @@ class ItemDetail extends Component {
         return(
             <div>
                 <h1>{this.state.item.name}</h1>
-                <h2>{`price: ${this.state.item.price} --- ${this.state.item.number_in_stock} in stock`}</h2>
+                <h3>{`price: ${this.state.item.price} --- ${this.state.item.number_in_stock} in stock`}</h3>
                 <p>{this.state.item.description}</p>
+                <h4>Reviews:</h4>
                 <ReviewList title={"Item reviews:"} id={this.props.match.id} reviews={this.state.reviews}/>
             </div>
         );

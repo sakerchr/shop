@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './itemsList.css';
 import { Link } from 'react-router-dom';
+import Table from 'react-bootstrap/Table'
 
 
 class ItemsList extends Component{
@@ -8,26 +9,28 @@ class ItemsList extends Component{
     render(){
         return(
             <div className="itemsList center">
-                <table>
+                <Table striped bordered hover responsive>
                     <thead>
                         <tr>
-                            <th>Items:</th>
+                            <th>Price:</th>
+                            <th>Item:</th>
                         </tr>
                     </thead>
                     <tbody>
                         {this.props.items.map((item) => {
                             return (
                             <tr>
+                                <td>{item.price}</td>
                                 <td>
                                     <Link to={`/item/${item.id}`}>
-                                        {`${item.name} --- ${item.description}`}
+                                        {item.name}
                                     </Link>
                                 </td>
                             </tr>
                             );
                         })}
                     </tbody>
-                </table>
+                </Table>
             </div>
         );
     }

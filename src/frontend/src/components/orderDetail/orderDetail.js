@@ -29,7 +29,7 @@ class OrderDetail extends Component {
     render(){
         return(
             <div>
-                <h1>{this.state.order.date}</h1>
+                <h1>{this.state.order.date}</h1><br/>
                 <ItemsList items={this.state.items} />
             </div>
         );

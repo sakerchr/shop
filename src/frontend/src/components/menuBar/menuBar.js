@@ -1,18 +1,19 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import Nav from 'react-bootstrap/Nav';
 import Button from 'react-bootstrap/Button';
+import './menuBar.css';
 
 class MenuBar extends Component {
 
     render(){
         return this.props.loggedIn ? 
-        <Nav fill variant="pills" activeKey="/">
+        <Nav className="menuBar" justify variant="pills" activeKey="/">
             <Nav.Item>
-                <Nav.Link eventKey="/" href="/">Home</Nav.Link>
+                <Link to="/">Home</Link>
             </Nav.Item>
             <Nav.Item >
-                <Nav.Link eventKey="/user" href="/user">User</Nav.Link>
+                <Link to="/user">User</Link>
             </Nav.Item>
             <Nav.Item>
                 <Button onClick={this.props.logout}>logout</Button>

@@ -25,8 +25,9 @@ class User extends Component {
     render(){
         return(
             <div>
-                <ReviewList title={"Your reviews:"} reviews={this.state.reviews} />
-                <OrderList title={"Your orders:"} orders={this.state.orders} />
+                <OrderList orders={this.state.orders} />
+                <h4>Your Reviews:</h4>
+                <ReviewList reviews={this.state.reviews} />
             </div>
         );
     }
